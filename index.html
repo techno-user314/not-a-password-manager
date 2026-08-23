@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHA-256 Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Hash Generator</h1>
+
+    <label for="firstString">First string</label>
+    <input
+      type="text"
+      id="firstString"
+      autocomplete="off"
+      spellcheck="false"
+    >
+
+    <div class="row">
+      <div class="field string-field">
+        <label for="secondString">Second string</label>
+        <input
+          type="text"
+          id="secondString"
+          autocomplete="off"
+          spellcheck="false"
+        >
+      </div>
+
+      <div class="field integer-field">
+        <label for="number">Integer</label>
+        <input
+          type="number"
+          id="number"
+          min="1"
+          step="1"
+          value="1"
+        >
+      </div>
+    </div>
+
+    <div id="resultArea" class="result-area">
+      <button id="generateButton" type="button">
+        Generate
+      </button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
