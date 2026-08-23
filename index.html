@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHA-256 Generator</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Not a Password Manager</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <main class="container">
-    <h1>Hash Generator</h1>
+    <h1>Generator</h1>
 
-    <label for="firstString">First string</label>
+    <h2>Key String</h2>
+    <p>Should be something that you will easily remember when you go to a platform's login.</p>
     <input
       type="text"
       id="firstString"
@@ -18,9 +19,10 @@
       spellcheck="false"
     >
 
+    <h2>Salt and Iteration values</h2></h2>
+    <p>Used to ensure password uniqueness. Recommendations: Have salt be your name or something else memorable that you use for every password you generate. Use iteration to change the password every 3-6 months without having to memorize a new key string.</p>
     <div class="row">
       <div class="field string-field">
-        <label for="secondString">Second string</label>
         <input
           type="text"
           id="secondString"
@@ -30,7 +32,6 @@
       </div>
 
       <div class="field integer-field">
-        <label for="number">Integer</label>
         <input
           type="number"
           id="number"
@@ -43,7 +44,7 @@
 
     <div id="resultArea" class="result-area">
       <button id="generateButton" type="button">
-        Generate
+        Get password
       </button>
     </div>
   </main>
