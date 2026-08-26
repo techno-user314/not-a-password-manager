@@ -9,9 +9,10 @@
 <body>
   <main class="container">
     <h1>(Not a) Password Manager</h1>
-    <p>Hover over the <span title="This is the native tooltip!">underlined text</span> to see a tooltip.</p>
-    <p><span title="The same every time when given the same inputs. Go ahead, try it, there's no randomness involved.">Deterministically</span> generate a password.</p>
+    <p>Deterministically generate a password.</p>
 
+    <br>
+    
     <h3>Passphrase</h3>
     <p>A memerable, easy passphrase that is unique for every password you generate. For example: To get your Amazon.com password your passphrase here could be "jungle".</p>
     <input
@@ -21,9 +22,9 @@
       spellcheck="false"
     >
 
-    <h2>Salt and Reset Counter</h2></h2>
+    <h3>Salt and Reset Counter</h3>
     <p>Salt ensures that this password is unique to you - even if someone else uses the same passphrase. This can - and probably should - be the same for every password you generate.</p>
-    <p>The Reset counter is how many times you've changed your password. Incrementing this will give you a completely new password, but you don't have to memorize a new passphrase or salt value.</p>p>
+    <p>The Reset counter is how many times you've changed your password. Incrementing this will give you a completely new password, but you don't have to memorize a new passphrase or salt value.</p>
     <div class="row">
       <div class="field string-field">
         <input
