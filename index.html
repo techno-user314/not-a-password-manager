@@ -8,10 +8,12 @@
 </head>
 <body>
   <main class="container">
-    <h1>Generator</h1>
+    <h1>(Not a) Password Manager</h1>
+    <p>Hover over the <span title="This is the native tooltip!">underlined text</span> to see a tooltip.</p>
+    <p><span title="The same every time when given the same inputs. Go ahead, try it, there's no randomness involved.">Deterministically</span> generate a password.</p>
 
-    <h2>Key String</h2>
-    <p>Should be something that you will easily remember when you go to a platform's login.</p>
+    <h3>Passphrase</h3>
+    <p>A memerable, easy passphrase that is unique for every password you generate. For example: To get your Amazon.com password your passphrase here could be "jungle".</p>
     <input
       type="text"
       id="firstString"
@@ -19,8 +21,9 @@
       spellcheck="false"
     >
 
-    <h2>Salt and Iteration values</h2></h2>
-    <p>Used to ensure password uniqueness. Recommendations: Have salt be your name or something else memorable that you use for every password you generate. Use iteration to change the password every 3-6 months without having to memorize a new key string.</p>
+    <h2>Salt and Reset Counter</h2></h2>
+    <p>Salt ensures that this password is unique to you - even if someone else uses the same passphrase. This can - and probably should - be the same for every password you generate.</p>
+    <p>The Reset counter is how many times you've changed your password. Incrementing this will give you a completely new password, but you don't have to memorize a new passphrase or salt value.</p>p>
     <div class="row">
       <div class="field string-field">
         <input
