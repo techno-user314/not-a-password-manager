@@ -9,22 +9,42 @@
 <body>
   <main class="container">
     <h1>(Not a) Password Manager</h1>
-    <p>Deterministically generate a password.</p>
-
-    <br>
+    <div style="display:flex; align-items:center; gap:25px;">
+        <p>Deterministically generate a password.</p>
+        <details>
+        <summary style="font-size: 12px; color: blue;">What does this mean?</summary>
+        <div>
+            This means that it generates the same password every time (when given the same inputs), without storing the password anywhere.
+        </div>
+        </details>
+    </div>
     
-    <h3>Passphrase</h3>
-    <p>A memerable, easy passphrase that is unique for every password you generate. For example: To get your Amazon.com password your passphrase here could be "jungle".</p>
+    <div style="display:flex; align-items:center; gap:25px; margin-top: 35px;">
+        <h3>Passphrase</h3>
+        <details>
+        <summary style="font-size: 12px; color: blue;">?</summary>
+        <div>
+            A memorable, easy passphrase that is unique for every password you generate. For example: To get your Amazon.com password your passphrase here could be "jungle".
+        </div>
+        </details>
+    </div>
     <input
       type="text"
       id="firstString"
       autocomplete="off"
       spellcheck="false"
     >
-
-    <h3>Salt and Reset Counter</h3>
-    <p>Salt ensures that this password is unique to you - even if someone else uses the same passphrase. This can - and probably should - be the same for every password you generate.</p>
-    <p>The Reset counter is how many times you've changed your password. Incrementing this will give you a completely new password, but you don't have to memorize a new passphrase or salt value.</p>
+    
+    <div style="display:flex; align-items:center; gap:25px; margin-top: 35px;">
+        <h3>Salt and Reset Counter</h3>
+        <details>
+        <summary style="font-size: 12px; color: blue;">?</summary>
+        <div>
+            <p>Salt ensures that this password is unique to you - even if someone else uses the same passphrase. This can - and probably should - be the same for every password you generate.</p>
+            <p>The Reset counter is how many times you've changed your password. Incrementing this will give you a completely new password, but you don't have to memorize a new passphrase or salt value.</p>
+        </div>
+        </details>
+    </div>
     <div class="row">
       <div class="field string-field">
         <input
