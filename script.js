@@ -10,7 +10,7 @@ function showGenerateButton() {
 
   generateButton = document.createElement("button");
   generateButton.type = "button";
-  generateButton.textContent = "Generate";
+  generateButton.textContent = "Get Password";
   generateButton.addEventListener("click", generateResult);
 
   resultArea.appendChild(generateButton);
