@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>[NOT A] Password Manager</title>
-
 <style>
     * {
         box-sizing: border-box;
@@ -28,6 +27,7 @@
         color: var(--text);
         background: var(--background);
     }
+
 
     /* ---------- MAIN CONTAINER ---------- */
 
@@ -84,34 +84,26 @@
 
 
     /* ---------- ABOUT ---------- */
-    
+
     .about-container {
         position: absolute;
         left: 0;
         top: 37%;
         height: 21%;
-    
         display: flex;
         align-items: center;
-    
         border-left: 2px solid var(--text);
-    
         z-index: 10;
     }
 
     .about {
         border: 0;
-
         padding: 0 0 0 12px;
-
         background: none;
         color: var(--muted);
-
         font-size: 28px;
         writing-mode: vertical-rl;
-
         cursor: pointer;
-
         transition:
             color 0.2s ease,
             letter-spacing 0.2s ease;
@@ -122,80 +114,76 @@
         letter-spacing: 2px;
     }
 
-    
-    /* ---------- DIALOGUE BOX ------------ */
+
+    /* ---------- DIALOGUE BOX ---------- */
+
     .dialogue-content {
         padding: 12px 18px;
-    
         border: 2px solid var(--line);
         border-radius: 4px;
-    
         background: var(--background);
         color: var(--blue);
-
-        font-size:20px;
+        font-size: 20px;
         line-height: 1.4;
     }
 
     .dialogue-content span {
-        display:block;
+        display: block;
     }
 
-    
+
     /* ---------- ABOUT DIALOGUE ---------- */
 
     .about-dialogue {
         position: absolute;
         left: 100%;
         top: 50%;
-    
         margin-left: 18px;
-    
         opacity: 0;
         transform: translateX(-15px) translateY(-50%);
-    
         pointer-events: none;
-    
         transition:
             opacity 0.25s ease,
             transform 0.25s ease;
     }
-    
+
     .about-dialogue.visible {
         opacity: 1;
         transform: translateX(0) translateY(-50%);
-    
         pointer-events: auto;
     }
-    
 
-    /* ---------- LOGIN ---------- */
 
-    .login {
+    /* ---------- FORMS ---------- */
+
+    .login,
+    .platform-form {
         position: absolute;
         left: 25%;
         right: 25%;
         top: 46%;
-
         display: flex;
         align-items: center;
-
         border-bottom: 2px solid var(--line);
-
-        transition: border-color 0.2s ease;
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease,
+            border-color 0.2s ease;
     }
 
-    .login:focus-within {
+    .login:focus-within,
+    .platform-form:focus-within {
         border-color: var(--blue);
     }
+
+
+    /* ---------- LOGIN ---------- */
 
     .login input {
         width: 100%;
         border: 0;
         outline: 0;
-
         padding: 8px 18px 12px;
-
         font-size: 28px;
         color: var(--text);
         background: transparent;
@@ -206,18 +194,119 @@
         opacity: 1;
     }
 
+
+    /* ---------- PLATFORM FORM ---------- */
+
+    .platform-form {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(15px);
+        display: block;
+        border-bottom: 0;
+    }
+
+    .platform-input {
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid var(--line);
+        transition: border-color 0.2s ease;
+    }
+
+    .platform-input:focus-within {
+        border-color: var(--blue);
+    }
+
+    .platform-input input {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        padding: 8px 18px 12px;
+        font-size: 28px;
+        color: var(--text);
+        background: transparent;
+    }
+
+    .platform-input input::placeholder {
+        color: var(--muted);
+        opacity: 1;
+    }
+
+
+    /* ---------- FORM ARROWS ---------- */
+
+    .form-arrow {
+        border: 0;
+        background: none;
+        font-size: 48px;
+        font-weight: 200;
+        padding: 0 8px 5px;
+        cursor: pointer;
+        color: var(--text);
+        transition:
+            color 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .form-arrow:hover {
+        color: var(--blue);
+        transform: translateX(4px);
+    }
+
+
+    /* ---------- NUMBER SPINBOX ---------- */
+
+    .number-control {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 18px;
+        gap: 18px;
+    }
+
+    .number-control button {
+        width: 58px;
+        height: 52px;
+        border: 2px solid var(--line);
+        border-radius: 4px;
+        background: transparent;
+        color: var(--text);
+        font-size: 30px;
+        line-height: 1;
+        cursor: pointer;
+        transition:
+            color 0.2s ease,
+            border-color 0.2s ease,
+            background 0.2s ease;
+    }
+
+    .number-control button:hover {
+        color: var(--blue);
+        border-color: var(--blue);
+        background: rgba(36, 119, 184, 0.05);
+    }
+
+    .number-control button:active {
+        background: rgba(36, 119, 184, 0.1);
+    }
+
+    .number-value {
+        min-width: 70px;
+        text-align: center;
+        font-size: 32px;
+        color: var(--text);
+    }
+
+
+    /* ---------- LOGIN SUBMIT ARROW ---------- */
+
     .login button {
         border: 0;
         background: none;
-
         font-size: 48px;
         font-weight: 200;
-
         padding: 0 8px 5px;
-
         cursor: pointer;
         color: var(--text);
-
         transition:
             color 0.2s ease,
             transform 0.2s ease;
@@ -229,6 +318,129 @@
     }
 
 
+    /* ---------- FORM TRANSITIONS ---------- */
+
+    .login.hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-15px);
+    }
+
+    .platform-form.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+
+    /* ---------- PASSWORD MODAL ---------- */
+
+    .password-modal {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(244, 247, 250, 0.85);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+        z-index: 100;
+    }
+
+    .password-modal.visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .password-box {
+        width: min(600px, 80vw);
+        padding: 24px;
+        border: 2px solid var(--line);
+        border-radius: 4px;
+        background: var(--background);
+        transform: translateY(15px);
+        transition: transform 0.25s ease;
+    }
+
+    .password-modal.visible .password-box {
+        transform: translateY(0);
+    }
+
+    .password-output {
+        display: flex;
+        border-bottom: 2px solid var(--line);
+        transition: border-color 0.2s ease;
+    }
+
+    .password-output:focus-within {
+        border-color: var(--blue);
+    }
+
+    .password-output input {
+        min-width: 0;
+        width: 100%;
+        border: 0;
+        outline: 0;
+        padding: 8px 12px 12px;
+        background: transparent;
+        color: var(--text);
+        font-size: 24px;
+    }
+
+    .password-output button {
+        border: 0;
+        background: none;
+        padding: 0 12px;
+        color: var(--muted);
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+
+    .password-output button:hover {
+        color: var(--blue);
+    }
+
+    .password-output {
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid var(--line);
+        transition: border-color 0.2s ease;
+    }
+
+    .password-output:focus-within {
+        border-color: var(--blue);
+    }
+
+    .password-output input {
+        min-width: 0;
+        width: 100%;
+        border: 0;
+        outline: 0;
+        padding: 8px 12px 12px;
+        background: transparent;
+        color: var(--text);
+        font-size: 24px;
+    }
+
+    .password-output button {
+        flex-shrink: 0;
+        border: 0;
+        background: none;
+        padding: 0 12px;
+        color: var(--muted);
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+
+    .password-output button:hover {
+        color: var(--blue);
+    }
+
     /* ---------- BOTTOM ---------- */
 
     .bottom {
@@ -236,7 +448,6 @@
         bottom: 28px;
         left: 0;
         width: 100%;
-
         display: flex;
         align-items: center;
         gap: 28px;
@@ -252,13 +463,10 @@
     .bottom button {
         border: 0;
         background: none;
-
         color: var(--muted);
         font-size: 27px;
-
         white-space: nowrap;
         cursor: pointer;
-
         transition:
             color 0.2s ease,
             letter-spacing 0.2s ease;
@@ -269,43 +477,37 @@
         letter-spacing: 0.5px;
     }
 
-    
+
     /* ---------- LOGIN HELP DIALOGUE ---------- */
-    
+
     .login-dialogue {
         position: absolute;
         left: 25%;
         right: 25%;
         bottom: 78px;
-    
         display: flex;
         justify-content: center;
-    
         opacity: 0;
         transform: translateY(15px);
-    
         pointer-events: none;
-
         z-index: 20;
-    
         transition:
             opacity 0.25s ease,
             transform 0.25s ease;
     }
-    
+
     .login-dialogue.visible {
         opacity: 1;
         transform: translateY(0);
-    
         pointer-events: auto;
     }
 </style>
 </head>
 
+
 <body>
 
 <div class="page">
-
     <header>
         <div class="line"></div>
 
@@ -318,62 +520,92 @@
     </header>
 
 
+    <!-- ABOUT -->
     <div class="about-container">
-        <button class="about" id="aboutButton">
-            ABOUT
-        </button>
-    
+        <button class="about" id="aboutButton">ABOUT</button>
+
         <div class="about-dialogue" id="aboutDialogue">
             <div class="dialogue-content" style="width:50vw;">
                 <span>
-                This is a deterministic password generator. This means that none of your information is stored on a server somewhere. Instead, passwords are generated (by your browser) according to set rules based on your login phrase and the name of the platform you are logging in to.
+                    This is a deterministic password generator. This means that none of your information is stored on a server somewhere. Instead, passwords are generated (by your browser) according to set rules based on your login phrase and the name of the platform you are logging in to.
                 </span>
                 <span style="font-size:16px; color: var(--muted)">
-                If you want the technical details of how this works, check out <a href="https://github.com/techno-user314/not-a-password-manager">the GitHub page.</a>
+                    If you want the technical details of how this works, check out the GitHub page.
                 </span>
             </div>
         </div>
     </div>
 
 
-    <form class="login">
-        <input
-            type="password"
-            placeholder="Enter login"
-            autocomplete="off"
-        >
-
+    <!-- LOGIN FORM -->
+    <form class="login" id="loginForm">
+        <input type="password" placeholder="Enter login" autocomplete="off">
         <button type="submit">&gt;</button>
     </form>
 
+
+    <!-- PLATFORM FORM -->
+    <form class="platform-form" id="platformForm">
+        <div class="platform-input">
+            <input type="text" placeholder="Enter platform" autocomplete="off">
+            <button class="form-arrow" type="submit">&gt;</button>
+        </div>
+
+        <div class="number-control">
+            <button type="button" id="numberDown" aria-label="Decrease number">
+                <
+            </button>
+
+            <div class="number-value" id="numberValue">1</div>
+
+            <button type="button" id="numberUp" aria-label="Increase number">
+                >
+            </button>
+        </div>
+    </form>
+
+
+    <!-- PASSWORD MODAL -->
+    <div class="password-modal" id="passwordModal">
+        <div class="password-box">
+            <div class="password-output">
+                <input type="password" id="passwordOutput" readonly>
+                <button type="button" id="visibilityButton" aria-label="Show password">◉</button>
+                <button type="button" id="copyButton">COPY</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- LOGIN HELP -->
     <div class="login-dialogue" id="loginDialogue">
         <div class="dialogue-content">
             <span>
-            No worries! You don't have to "create" an account - just login with a word or phrase that you will easily remember later.
+                No worries! You don't have to "create" an account - just login with a word or phrase that you will easily remember later.
             </span>
             <span>
-            (But not something that others would easily guess - don't use your name, for example.)
+                (But not something that others would easily guess - don't use your name, for example.)
             </span>
             <span style="font-size:16px; color: var(--muted)">
-            Your account credentials are never stored. See ABOUT for more information.
+                Your account credentials are never stored. See ABOUT for more information.
             </span>
         </div>
     </div>
 
+
+    <!-- BOTTOM -->
     <div class="bottom">
         <div class="line"></div>
-
         <button type="button" id="loginHelpButton">
             I don't have a login
         </button>
-
         <div class="line"></div>
     </div>
-
 </div>
 
 
 <script>
+    /* ---------- LOGIN HELP ---------- */
     const helpButton = document.getElementById("loginHelpButton");
     const dialogue = document.getElementById("loginDialogue");
 
@@ -382,14 +614,128 @@
     });
 
 
+    /* ---------- ABOUT ---------- */
     const aboutButton = document.getElementById("aboutButton");
     const aboutDialogue = document.getElementById("aboutDialogue");
 
     aboutButton.addEventListener("click", () => {
         aboutDialogue.classList.toggle("visible");
     });
+
+
+    /* ---------- LOGIN → PLATFORM ---------- */
+    const loginForm = document.getElementById("loginForm");
+    const platformForm = document.getElementById("platformForm");
+
+    loginForm.addEventListener("submit", (event) => {
+
+        event.preventDefault();
+
+        loginForm.classList.add("hidden");
+        platformForm.classList.add("visible");
+
+    });
+
+
+    /* ---------- NUMBER CONTROL ---------- */
+    const numberValue = document.getElementById("numberValue");
+    const numberUp = document.getElementById("numberUp");
+    const numberDown = document.getElementById("numberDown");
+
+    let number = 1;
+
+    numberUp.addEventListener("click", () => {
+        number++;
+        numberValue.textContent = number;
+    });
+
+    numberDown.addEventListener("click", () => {
+        number--;
+        numberValue.textContent = number;
+    });
+
+
+
+    const passwordForm = document.getElementById("platformForm");
+    const passwordModal = document.getElementById("passwordModal");
+    const passwordOutput = document.getElementById("passwordOutput");
+    const copyButton = document.getElementById("copyButton");
+
+    passwordForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        // Temporary value for testing
+        passwordOutput.value = "ExamplePassword123!";
+
+        passwordModal.classList.add("visible");
+    });
+
+    copyButton.addEventListener("click", async () => {
+        await navigator.clipboard.writeText(passwordOutput.value);
+
+        copyButton.textContent = "COPIED";
+
+        setTimeout(() => {
+            copyButton.textContent = "COPY";
+        }, 1200);
+    });
+
+
+    const passwordBox = document.querySelector(".password-box");
+    const visibilityButton = document.getElementById("visibilityButton");
+
+
+    // Show password modal
+    passwordForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        passwordOutput.value = "ExamplePassword123!";
+
+        passwordOutput.type = "password";
+        visibilityButton.textContent = "◉";
+
+        passwordModal.classList.add("visible");
+    });
+
+
+    // Toggle password visibility
+    visibilityButton.addEventListener("click", () => {
+
+        const visible = passwordOutput.type === "text";
+
+        passwordOutput.type = visible ? "password" : "text";
+
+        visibilityButton.textContent = visible ? "◉" : "○";
+
+    });
+
+
+    // Copy password
+    copyButton.addEventListener("click", async () => {
+
+        await navigator.clipboard.writeText(passwordOutput.value);
+
+        copyButton.textContent = "COPIED";
+
+        setTimeout(() => {
+            copyButton.textContent = "COPY";
+        }, 1200);
+
+    });
+
+
+    // Close modal when clicking outside the box
+    passwordModal.addEventListener("click", (event) => {
+
+        if (!passwordBox.contains(event.target)) {
+
+            passwordModal.classList.remove("visible");
+
+        }
+
+    });
+
 </script>
 
 </body>
 </html>
-
