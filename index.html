@@ -1,78 +1,397 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Not a Password Manager</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>[NOT A] Password Manager</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    :root {
+        --background: #F4F7FA;
+        --text: #17212B;
+        --blue: #2477B8;
+        --blue-hover: #155A8A;
+        --muted: #5D7182;
+        --line: #9FB4C4;
+    }
+
+    body {
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        color: var(--text);
+        background: var(--background);
+    }
+
+    /* ---------- MAIN CONTAINER ---------- */
+
+    .page {
+        position: relative;
+        width: 66.67%;
+        max-width: 1200px;
+        height: 100vh;
+        margin: auto;
+    }
+
+
+    /* ---------- HEADER ---------- */
+
+    header {
+        position: absolute;
+        top: 15px;
+        left: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    header .line {
+        height: 2px;
+        background: var(--text);
+        border-radius: 5px;
+        flex: 1;
+    }
+
+    .title {
+        text-align: center;
+        white-space: nowrap;
+
+        transform: ScaleY(0.8);
+        letter-spacing: 5px;
+    }
+
+    .title small {
+        display: block;
+        text-align: left;
+        font-size: clamp(18px, 2vw, 30px);
+        margin-bottom: 2px;
+        color: var(--muted);
+        font-weight: bold;
+    }
+
+    .title span {
+        font-size: clamp(40px, 4vw, 60px);
+        color: var(--blue);
+        font-weight: 800;
+    }
+
+
+    /* ---------- ABOUT ---------- */
+    
+    .about-container {
+        position: absolute;
+        left: 0;
+        top: 37%;
+        height: 21%;
+    
+        display: flex;
+        align-items: center;
+    
+        border-left: 2px solid var(--text);
+    
+        z-index: 10;
+    }
+
+    .about {
+        border: 0;
+
+        padding: 0 0 0 12px;
+
+        background: none;
+        color: var(--muted);
+
+        font-size: 28px;
+        writing-mode: vertical-rl;
+
+        cursor: pointer;
+
+        transition:
+            color 0.2s ease,
+            letter-spacing 0.2s ease;
+    }
+
+    .about:hover {
+        color: var(--blue);
+        letter-spacing: 2px;
+    }
+
+    
+    /* ---------- DIALOGUE BOX ------------ */
+    .dialogue-content {
+        padding: 12px 18px;
+    
+        border: 2px solid var(--line);
+        border-radius: 4px;
+    
+        background: var(--background);
+        color: var(--blue);
+
+        font-size:20px;
+        line-height: 1.4;
+    }
+
+    .dialogue-content span {
+        display:block;
+    }
+
+    
+    /* ---------- ABOUT DIALOGUE ---------- */
+
+    .about-dialogue {
+        position: absolute;
+        left: 100%;
+        top: 50%;
+    
+        margin-left: 18px;
+    
+        opacity: 0;
+        transform: translateX(-15px) translateY(-50%);
+    
+        pointer-events: none;
+    
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease;
+    }
+    
+    .about-dialogue.visible {
+        opacity: 1;
+        transform: translateX(0) translateY(-50%);
+    
+        pointer-events: auto;
+    }
+    
+
+    /* ---------- LOGIN ---------- */
+
+    .login {
+        position: absolute;
+        left: 25%;
+        right: 25%;
+        top: 46%;
+
+        display: flex;
+        align-items: center;
+
+        border-bottom: 2px solid var(--line);
+
+        transition: border-color 0.2s ease;
+    }
+
+    .login:focus-within {
+        border-color: var(--blue);
+    }
+
+    .login input {
+        width: 100%;
+        border: 0;
+        outline: 0;
+
+        padding: 8px 18px 12px;
+
+        font-size: 28px;
+        color: var(--text);
+        background: transparent;
+    }
+
+    .login input::placeholder {
+        color: var(--muted);
+        opacity: 1;
+    }
+
+    .login button {
+        border: 0;
+        background: none;
+
+        font-size: 48px;
+        font-weight: 200;
+
+        padding: 0 8px 5px;
+
+        cursor: pointer;
+        color: var(--text);
+
+        transition:
+            color 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .login button:hover {
+        color: var(--blue);
+        transform: translateX(4px);
+    }
+
+
+    /* ---------- BOTTOM ---------- */
+
+    .bottom {
+        position: absolute;
+        bottom: 28px;
+        left: 0;
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        gap: 28px;
+    }
+
+    .bottom .line {
+        height: 2px;
+        background: var(--text);
+        border-radius: 5px;
+        flex: 1;
+    }
+
+    .bottom button {
+        border: 0;
+        background: none;
+
+        color: var(--muted);
+        font-size: 27px;
+
+        white-space: nowrap;
+        cursor: pointer;
+
+        transition:
+            color 0.2s ease,
+            letter-spacing 0.2s ease;
+    }
+
+    .bottom button:hover {
+        color: var(--blue);
+        letter-spacing: 0.5px;
+    }
+
+    
+    /* ---------- LOGIN HELP DIALOGUE ---------- */
+    
+    .login-dialogue {
+        position: absolute;
+        left: 25%;
+        right: 25%;
+        bottom: 78px;
+    
+        display: flex;
+        justify-content: center;
+    
+        opacity: 0;
+        transform: translateY(15px);
+    
+        pointer-events: none;
+
+        z-index: 20;
+    
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease;
+    }
+    
+    .login-dialogue.visible {
+        opacity: 1;
+        transform: translateY(0);
+    
+        pointer-events: auto;
+    }
+</style>
 </head>
+
 <body>
-  <main class="container">
-    <h1>(Not a) Password Manager</h1>
-    <div style="display:flex; align-items:center; gap:25px;">
-        <p>Deterministically generate a password.</p>
-        <details>
-        <summary style="font-size: 12px; color: blue;">What does this mean?</summary>
-        <div>
-            This means that it generates the same password every time (when given the same inputs), without storing the password anywhere.
+
+<div class="page">
+
+    <header>
+        <div class="line"></div>
+
+        <div class="title">
+            <small>[NOT A]</small>
+            <span>PASSWORD MANAGER</span>
         </div>
-        </details>
-    </div>
+
+        <div class="line"></div>
+    </header>
+
+
+    <div class="about-container">
+        <button class="about" id="aboutButton">
+            ABOUT
+        </button>
     
-    <div style="display:flex; align-items:center; gap:25px; margin-top: 35px;">
-        <h3>Passphrase</h3>
-        <details>
-        <summary style="font-size: 12px; color: blue;">?</summary>
-        <div>
-            A memorable, easy passphrase that is unique for every password you generate. For example: To get your Amazon.com password your passphrase here could be "jungle".
+        <div class="about-dialogue" id="aboutDialogue">
+            <div class="dialogue-content" style="width:50vw;">
+                <span>
+                This is a deterministic password generator. This means that none of your information is stored on a server somewhere. Instead, passwords are generated (by your browser) according to set rules based on your login phrase and the name of the platform you are logging in to.
+                </span>
+                <span style="font-size:16px; color: var(--muted)">
+                If you want the technical details of how this works, check out the GitHub page.
+                </span>
+            </div>
         </div>
-        </details>
     </div>
-    <input
-      type="text"
-      id="firstString"
-      autocomplete="off"
-      spellcheck="false"
-    >
-    
-    <div style="display:flex; align-items:center; gap:25px; margin-top: 35px;">
-        <h3>Salt and Reset Counter</h3>
-        <details>
-        <summary style="font-size: 12px; color: blue;">?</summary>
-        <div>
-            <p>Salt ensures that this password is unique to you - even if someone else uses the same passphrase. This can - and probably should - be the same for every password you generate.</p>
-            <p>The Reset counter is how many times you've changed your password. Incrementing this will give you a completely new password, but you don't have to memorize a new passphrase or salt value.</p>
+
+
+    <form class="login">
+        <input
+            type="password"
+            placeholder="Enter login"
+            autocomplete="off"
+        >
+
+        <button type="submit">&gt;</button>
+    </form>
+
+    <div class="login-dialogue" id="loginDialogue">
+        <div class="dialogue-content">
+            <span>
+            No worries! You don't have to "create" an account - just login with a word or phrase that you will easily remember later.
+            </span>
+            <span>
+            (But not something that others would easily guess - don't use your name, for example.)
+            </span>
+            <span style="font-size:16px; color: var(--muted)">
+            Your account credentials are never stored. See ABOUT for more information.
+            </span>
         </div>
-        </details>
-    </div>
-    <div class="row">
-      <div class="field string-field">
-        <input
-          type="text"
-          id="secondString"
-          autocomplete="off"
-          spellcheck="false"
-        >
-      </div>
-
-      <div class="field integer-field">
-        <input
-          type="number"
-          id="number"
-          min="1"
-          step="1"
-          value="1"
-        >
-      </div>
     </div>
 
-    <div id="resultArea" class="result-area">
-      <button id="generateButton" type="button">
-        Get password
-      </button>
-    </div>
-  </main>
+    <div class="bottom">
+        <div class="line"></div>
 
-  <script src="script.js"></script>
+        <button type="button" id="loginHelpButton">
+            I don't have a login
+        </button>
+
+        <div class="line"></div>
+    </div>
+
+</div>
+
+
+<script>
+    const helpButton = document.getElementById("loginHelpButton");
+    const dialogue = document.getElementById("loginDialogue");
+
+    helpButton.addEventListener("click", () => {
+        dialogue.classList.toggle("visible");
+    });
+
+
+    const aboutButton = document.getElementById("aboutButton");
+    const aboutDialogue = document.getElementById("aboutDialogue");
+
+    aboutButton.addEventListener("click", () => {
+        aboutDialogue.classList.toggle("visible");
+    });
+</script>
+
 </body>
 </html>
+
