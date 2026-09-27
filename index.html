@@ -735,6 +735,165 @@
 
     });
 
+
+
+
+
+    /* ---------- LOGIN HELP ---------- */
+
+    helpButton.addEventListener("click", () => {
+        dialogue.classList.toggle("visible");
+    });
+
+
+    /* ---------- ABOUT ---------- */
+
+    aboutButton.addEventListener("click", () => {
+        aboutDialogue.classList.toggle("visible");
+    });
+
+
+    /* ---------- LOGIN FORM ---------- */
+
+    const loginInput = loginForm.querySelector("input");
+
+    let login = "";
+
+    loginForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        login = loginInput.value;
+
+        loginForm.classList.add("hidden");
+        platformForm.classList.add("visible");
+    });
+
+
+    /* ---------- PLATFORM FORM ---------- */
+
+    const platformInput = platformForm.querySelector("input");
+
+
+    /* ---------- NUMBER CONTROL ---------- */
+
+    number = 1;
+
+    numberUp.addEventListener("click", () => {
+        number++;
+        numberValue.textContent = number;
+    });
+
+    numberDown.addEventListener("click", () => {
+        if (number > 1) {
+            number--;
+            numberValue.textContent = number;
+        }
+    });
+
+
+    /* ---------- GENERATE PASSWORD ---------- */
+
+    async function generatePassword() {
+
+        const combined =
+            login +
+            platformInput.value +
+            String(number);
+
+        const encoder = new TextEncoder();
+        const data = encoder.encode(combined);
+
+        const hashBuffer = await crypto.subtle.digest(
+            "SHA-256",
+            data
+        );
+
+        const hashBytes = new Uint8Array(hashBuffer);
+
+
+        // Convert SHA-256 bytes to Base64.
+
+        let binary = "";
+
+        for (const byte of hashBytes) {
+            binary += String.fromCharCode(byte);
+        }
+
+        const base64 = btoa(binary);
+
+
+        // Prefix and truncate to 20 characters.
+
+        return ("B0x:" + base64).substring(0, 20);
+    }
+
+
+    /* ---------- PLATFORM SUBMIT ---------- */
+
+    platformForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        const password = await generatePassword();
+
+        passwordOutput.value = password;
+
+        // Always start with the password hidden.
+
+        passwordOutput.type = "password";
+        visibilityButton.textContent = "◉";
+
+        // Reset copy button.
+
+        copyButton.textContent = "COPY";
+
+        // Show modal.
+
+        passwordModal.classList.add("visible");
+    });
+
+
+    /* ---------- COPY ---------- */
+
+    copyButton.addEventListener("click", async () => {
+
+        try {
+
+            await navigator.clipboard.writeText(
+                passwordOutput.value
+            );
+
+            copyButton.textContent = "COPIED";
+
+        } catch {
+
+            // Fallback for browsers without Clipboard API.
+
+            passwordOutput.select();
+            document.execCommand("copy");
+
+            copyButton.textContent = "COPIED";
+        }
+
+        setTimeout(() => {
+            copyButton.textContent = "COPY";
+        }, 1200);
+    });
+
+
+    /* ---------- CLOSE MODAL ---------- */
+
+    passwordModal.addEventListener("click", (event) => {
+
+        // Only close when clicking the area outside the box.
+
+        if (!passwordBox.contains(event.target)) {
+
+            passwordModal.classList.remove("visible");
+
+        }
+    });
+
 </script>
 
 </body>
