@@ -758,23 +758,6 @@
     const platformInput = platformForm.querySelector("input");
 
 
-    /* ---------- NUMBER CONTROL ---------- */
-
-    number = 1;
-
-    numberUp.addEventListener("click", () => {
-        number++;
-        numberValue.textContent = number;
-    });
-
-    numberDown.addEventListener("click", () => {
-        if (number > 1) {
-            number--;
-            numberValue.textContent = number;
-        }
-    });
-
-
     /* ---------- GENERATE PASSWORD ---------- */
 
     async function generatePassword() {
