@@ -501,6 +501,330 @@
         transform: translateY(0);
         pointer-events: auto;
     }
+
+    
+/* ========================================
+   RESPONSIVE / CROSS-PLATFORM LAYOUT
+   ======================================== */
+
+/* Fluid text sizing */
+.title small {
+    font-size: clamp(11px, 1.6vw, 30px);
+}
+
+.title span {
+    font-size: clamp(15px, 3.5vw, 60px);
+    letter-spacing: clamp(0.5px, 0.35vw, 5px);
+}
+
+.about {
+    font-size: clamp(15px, 1.8vw, 28px);
+}
+
+.dialogue-content {
+    font-size: clamp(14px, 1.4vw, 20px);
+    overflow-wrap: anywhere;
+}
+
+.dialogue-content span[style] {
+    font-size: clamp(12px, 1.1vw, 16px) !important;
+}
+
+.login input,
+.platform-input input {
+    font-size: clamp(16px, 2vw, 28px);
+    min-width: 0;
+}
+
+.form-arrow,
+.login button {
+    font-size: clamp(30px, 3.5vw, 48px);
+    flex-shrink: 0;
+}
+
+.number-control button {
+    width: clamp(42px, 4.5vw, 58px);
+    height: clamp(42px, 4.5vw, 52px);
+    font-size: clamp(23px, 2.5vw, 30px);
+}
+
+.number-value {
+    min-width: clamp(40px, 5vw, 70px);
+    font-size: clamp(23px, 2.5vw, 32px);
+}
+
+.password-output input {
+    font-size: clamp(14px, 1.8vw, 24px);
+}
+
+.password-output button {
+    font-size: clamp(13px, 1.4vw, 18px);
+}
+
+.bottom button {
+    font-size: clamp(13px, 1.8vw, 27px);
+}
+
+.password-box {
+    width: min(600px, 92vw);
+    padding: clamp(12px, 3vw, 24px);
+}
+
+/* Medium screens and tablets */
+@media (max-width: 900px) {
+    .page {
+        width: 90%;
+    }
+
+    .login,
+    .platform-form {
+        left: 12%;
+        right: 12%;
+    }
+
+    .login-dialogue {
+        left: 8%;
+        right: 8%;
+    }
+
+    header {
+        gap: 10px;
+    }
+
+    .bottom {
+        gap: 12px;
+    }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+    body {
+        height: auto;
+        min-height: 100vh;
+        min-height: 100svh;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .page {
+        width: 100%;
+        max-width: none;
+        min-height: 100vh;
+        min-height: 100svh;
+        height: auto;
+    }
+
+    /* Remove the large desktop side margins */
+    header,
+    .bottom {
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+
+    header {
+        top: 20px;
+        gap: 0;
+        padding: 0 12px;
+    }
+
+    header .line {
+        display: none;
+    }
+
+    .title {
+        width: 100%;
+        white-space: normal;
+        letter-spacing: 0;
+    }
+
+    .title small {
+        font-size: clamp(12px, 3.5vw, 18px);
+        letter-spacing: 1px;
+        text-align: center;
+    }
+
+    .title span {
+        display: block;
+        font-size: clamp(18px, 5.4vw, 32px);
+        letter-spacing: clamp(0.5px, 0.5vw, 2px);
+        overflow-wrap: anywhere;
+    }
+
+    /* Keep the main forms wide on mobile */
+    .login,
+    .platform-form {
+        left: 5%;
+        right: 5%;
+        top: 43%;
+    }
+
+    .login input,
+    .platform-input input {
+        padding: 8px 6px 10px;
+        font-size: clamp(16px, 4.5vw, 24px);
+    }
+
+    .login button,
+    .form-arrow {
+        padding: 0 6px 5px;
+        font-size: 34px;
+    }
+
+    /* Compact the number selector */
+    .number-control {
+        gap: 14px;
+        margin-top: 16px;
+    }
+
+    .number-control button {
+        width: 46px;
+        height: 46px;
+    }
+
+    .number-value {
+        min-width: 45px;
+        font-size: 26px;
+    }
+
+    /* Move ABOUT slightly inward */
+    .about-container {
+        top: 34%;
+        height: 20%;
+    }
+
+    .about {
+        padding-left: 6px;
+        font-size: 17px;
+    }
+
+    /* Keep the ABOUT dialogue inside the viewport */
+    .about-dialogue {
+        position: fixed;
+        left: 48px;
+        right: 12px;
+        top: 50%;
+        width: auto;
+        margin-left: 0;
+        z-index: 30;
+        transform: translateX(-10px) translateY(-50%);
+    }
+
+    .about-dialogue.visible {
+        transform: translateX(0) translateY(-50%);
+    }
+
+    .about-dialogue .dialogue-content {
+        width: 100% !important;
+        max-height: 65vh;
+        overflow-y: auto;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    /* Bottom controls */
+    .bottom {
+        bottom: 16px;
+        gap: 8px;
+        padding: 0 10px;
+    }
+
+    .bottom button {
+        max-width: 85%;
+        white-space: normal;
+        text-align: center;
+        font-size: clamp(13px, 3.5vw, 18px);
+    }
+
+    .bottom .line {
+        min-width: 8px;
+    }
+
+    /* Login help dialogue */
+    .login-dialogue {
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 65px;
+        z-index: 30;
+    }
+
+    .login-dialogue .dialogue-content {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    /* Password modal */
+    .password-box {
+        width: 92vw;
+        max-width: 500px;
+        padding: 14px;
+    }
+
+    .password-output input {
+        padding: 8px 5px 10px;
+        font-size: clamp(13px, 3.7vw, 20px);
+    }
+
+    .password-output button {
+        padding: 0 6px;
+        font-size: 13px;
+    }
+
+        
+    /* Keep consistent, responsive edge margins */
+    .page {
+        width: calc(100% - clamp(24px, 6vw, 96px));
+        max-width: 1200px;
+        margin-inline: auto;
+    }
+    
+    @media (max-width: 900px) {
+        .page {
+            width: calc(100% - 32px);
+        }
+    }
+    
+    @media (max-width: 600px) {
+        .page {
+            width: calc(100% - 24px);
+        }
+    }
+    
+    @media (max-width: 360px) {
+        .page {
+            width: calc(100% - 16px);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .about-container {
+            top: 27%;
+            height: 14%;
+        }
+    
+        .login,
+        .platform-form {
+            left: 8%;
+            right: 8%;
+            top: 48%;
+        }
+    }
+    
+    @media (max-width: 360px) {
+        .about-container {
+            top: 25%;
+            height: 14%;
+        }
+    
+        .login,
+        .platform-form {
+            left: 6%;
+            right: 6%;
+            top: 46%;
+        }
+    }
 </style>
 </head>
 
@@ -645,12 +969,12 @@
     let number = 1;
 
     numberUp.addEventListener("click", () => {
-        number++;
+        number++;   
         numberValue.textContent = number;
     });
 
     numberDown.addEventListener("click", () => {
-        number--;
+        if (number > 1) number--;
         numberValue.textContent = number;
     });
 
@@ -763,8 +1087,8 @@
     async function generatePassword() {
 
         const combined =
-            login +
             platformInput.value +
+            login +
             String(number);
 
         const encoder = new TextEncoder();
