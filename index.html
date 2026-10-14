@@ -950,14 +950,29 @@
     /* ---------- LOGIN → PLATFORM ---------- */
     const loginForm = document.getElementById("loginForm");
     const platformForm = document.getElementById("platformForm");
-
+    
     loginForm.addEventListener("submit", (event) => {
-
         event.preventDefault();
-
+    
+        // Hide login form and show platform form
         loginForm.classList.add("hidden");
         platformForm.classList.add("visible");
-
+    
+        // Update help button text
+        helpButton.textContent = "How do I use this?";
+    
+        // Update help dialogue text
+        dialogue.querySelector(".dialogue-content").innerHTML = `
+          <span>
+            Enter a platoform code to generate the password for that platform code. E.g. "jungle" to get the password for your Amazon.com account.
+            Note that this is case sensative. Also note that platform codes are arbitrary and decided by you - so make sure you will remember it later.
+            Increment the number to get a new password for the same platform code.
+            Reload the page to login for a different user
+          </span>
+          <span style="font-size:16px; color: var(--muted)">
+            Your account credentials are never stored. See ABOUT for more information.
+          </span>
+        `;
     });
 
 
