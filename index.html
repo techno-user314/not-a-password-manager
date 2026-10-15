@@ -1,78 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Not a Password Manager</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[NOT A] Password Manager</title>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/responsive.css">
 </head>
+
 <body>
-  <main class="container">
-    <h1>(Not a) Password Manager</h1>
-    <div style="display:flex; align-items:center; gap:25px;">
-        <p>Deterministically generate a password.</p>
-        <details>
-        <summary style="font-size: 12px; color: blue;">What does this mean?</summary>
-        <div>
-            This means that it generates the same password every time (when given the same inputs), without storing the password anywhere.
-        </div>
-        </details>
-    </div>
-    
-    <div style="display:flex; align-items:center; gap:25px; margin-top: 35px;">
-        <h3>Passphrase</h3>
-        <details>
-        <summary style="font-size: 12px; color: blue;">?</summary>
-        <div>
-            A memorable, easy passphrase that is unique for every password you generate. For example: To get your Amazon.com password your passphrase here could be "jungle".
-        </div>
-        </details>
-    </div>
-    <input
-      type="text"
-      id="firstString"
-      autocomplete="off"
-      spellcheck="false"
-    >
-    
-    <div style="display:flex; align-items:center; gap:25px; margin-top: 35px;">
-        <h3>Salt and Reset Counter</h3>
-        <details>
-        <summary style="font-size: 12px; color: blue;">?</summary>
-        <div>
-            <p>Salt ensures that this password is unique to you - even if someone else uses the same passphrase. This can - and probably should - be the same for every password you generate.</p>
-            <p>The Reset counter is how many times you've changed your password. Incrementing this will give you a completely new password, but you don't have to memorize a new passphrase or salt value.</p>
-        </div>
-        </details>
-    </div>
-    <div class="row">
-      <div class="field string-field">
-        <input
-          type="text"
-          id="secondString"
-          autocomplete="off"
-          spellcheck="false"
-        >
-      </div>
 
-      <div class="field integer-field">
-        <input
-          type="number"
-          id="number"
-          min="1"
-          step="1"
-          value="1"
-        >
-      </div>
+<div class="page">
+    <header>
+        <div class="line"></div>
+
+        <div class="title">
+            <small>[NOT A]</small>
+            <span>PASSWORD MANAGER</span>
+        </div>
+
+        <div class="line"></div>
+    </header>
+
+
+    <!-- ABOUT -->
+    <div class="about-container">
+        <button class="about" id="aboutButton">ABOUT</button>
+
+        <div class="about-dialogue" id="aboutDialogue">
+            <div class="dialogue-content" style="width:50vw;">
+                <span>
+                    This is a deterministic password generator. This means that none of your information is stored on a server somewhere. Instead, passwords are generated (by your browser) according to set rules based on your login phrase and the name of the platform you are logging in to.
+                </span>
+                <span style="font-size:16px; color: var(--muted)">
+                    If you want the technical details of how this works, check out the GitHub page.
+                </span>
+            </div>
+        </div>
     </div>
 
-    <div id="resultArea" class="result-area">
-      <button id="generateButton" type="button">
-        Get password
-      </button>
-    </div>
-  </main>
 
-  <script src="script.js"></script>
+    <!-- LOGIN FORM -->
+    <form class="login" id="loginForm">
+        <input type="password" placeholder="Enter login" autocomplete="off">
+        <button type="submit">&gt;</button>
+    </form>
+
+
+    <!-- PLATFORM FORM -->
+    <form class="platform-form" id="platformForm">
+        <div class="platform-input">
+            <input type="text" placeholder="Enter platform" autocomplete="off">
+            <button class="form-arrow" type="submit">&gt;</button>
+        </div>
+
+        <div class="number-control">
+            <button type="button" id="numberDown" aria-label="Decrease number">
+                <
+            </button>
+
+            <div class="number-value" id="numberValue">1</div>
+
+            <button type="button" id="numberUp" aria-label="Increase number">
+                >
+            </button>
+        </div>
+    </form>
+
+
+    <!-- PASSWORD MODAL -->
+    <div class="password-modal" id="passwordModal">
+        <div class="password-box">
+            <div class="password-output">
+                <input type="password" id="passwordOutput" readonly>
+                <button type="button" id="visibilityButton" aria-label="Show password">◉</button>
+                <button type="button" id="copyButton">COPY</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- LOGIN HELP -->
+    <div class="login-dialogue" id="loginDialogue">
+        <div class="dialogue-content">
+            <span>
+                No worries! You don't have to "create" an account - just login with a word or phrase that you will easily remember later.
+            </span>
+            <span>
+                (But not something that others would easily guess - don't use your name, for example.)
+            </span>
+            <span style="font-size:16px; color: var(--muted)">
+                Your account credentials are never stored. See ABOUT for more information.
+            </span>
+        </div>
+    </div>
+
+
+    <!-- BOTTOM -->
+    <div class="bottom">
+        <div class="line"></div>
+        <button type="button" id="loginHelpButton">
+            I don't have a login
+        </button>
+        <div class="line"></div>
+    </div>
+</div>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
