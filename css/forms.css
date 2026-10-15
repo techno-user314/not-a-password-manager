@@ -1,0 +1,287 @@
+/* Login, platform entry and password dialog controls. */
+/* ---------- FORMS ---------- */
+
+    .login,
+    .platform-form {
+        position: absolute;
+        left: 25%;
+        right: 25%;
+        top: 46%;
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid var(--line);
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease,
+            border-color 0.2s ease;
+    }
+
+    .login:focus-within,
+    .platform-form:focus-within {
+        border-color: var(--blue);
+    }
+
+
+    /* ---------- LOGIN ---------- */
+
+    .login input {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        padding: 8px 18px 12px;
+        font-size: 28px;
+        color: var(--text);
+        background: transparent;
+    }
+
+    .login input::placeholder {
+        color: var(--muted);
+        opacity: 1;
+    }
+
+
+    /* ---------- PLATFORM FORM ---------- */
+
+    .platform-form {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(15px);
+        display: block;
+        border-bottom: 0;
+    }
+
+    .platform-input {
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid var(--line);
+        transition: border-color 0.2s ease;
+    }
+
+    .platform-input:focus-within {
+        border-color: var(--blue);
+    }
+
+    .platform-input input {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        padding: 8px 18px 12px;
+        font-size: 28px;
+        color: var(--text);
+        background: transparent;
+    }
+
+    .platform-input input::placeholder {
+        color: var(--muted);
+        opacity: 1;
+    }
+
+
+    /* ---------- FORM ARROWS ---------- */
+
+    .form-arrow {
+        border: 0;
+        background: none;
+        font-size: 48px;
+        font-weight: 200;
+        padding: 0 8px 5px;
+        cursor: pointer;
+        color: var(--text);
+        transition:
+            color 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .form-arrow:hover {
+        color: var(--blue);
+        transform: translateX(4px);
+    }
+
+
+    /* ---------- NUMBER SPINBOX ---------- */
+
+    .number-control {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 18px;
+        gap: 18px;
+    }
+
+    .number-control button {
+        width: 58px;
+        height: 52px;
+        border: 2px solid var(--line);
+        border-radius: 4px;
+        background: transparent;
+        color: var(--text);
+        font-size: 30px;
+        line-height: 1;
+        cursor: pointer;
+        transition:
+            color 0.2s ease,
+            border-color 0.2s ease,
+            background 0.2s ease;
+    }
+
+    .number-control button:hover {
+        color: var(--blue);
+        border-color: var(--blue);
+        background: rgba(36, 119, 184, 0.05);
+    }
+
+    .number-control button:active {
+        background: rgba(36, 119, 184, 0.1);
+    }
+
+    .number-value {
+        min-width: 70px;
+        text-align: center;
+        font-size: 32px;
+        color: var(--text);
+    }
+
+
+    /* ---------- LOGIN SUBMIT ARROW ---------- */
+
+    .login button {
+        border: 0;
+        background: none;
+        font-size: 48px;
+        font-weight: 200;
+        padding: 0 8px 5px;
+        cursor: pointer;
+        color: var(--text);
+        transition:
+            color 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .login button:hover {
+        color: var(--blue);
+        transform: translateX(4px);
+    }
+
+
+    /* ---------- FORM TRANSITIONS ---------- */
+
+    .login.hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-15px);
+    }
+
+    .platform-form.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+
+    /* ---------- PASSWORD MODAL ---------- */
+
+    .password-modal {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(244, 247, 250, 0.85);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+        z-index: 100;
+    }
+
+    .password-modal.visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .password-box {
+        width: min(600px, 80vw);
+        padding: 24px;
+        border: 2px solid var(--line);
+        border-radius: 4px;
+        background: var(--background);
+        transform: translateY(15px);
+        transition: transform 0.25s ease;
+    }
+
+    .password-modal.visible .password-box {
+        transform: translateY(0);
+    }
+
+    .password-output {
+        display: flex;
+        border-bottom: 2px solid var(--line);
+        transition: border-color 0.2s ease;
+    }
+
+    .password-output:focus-within {
+        border-color: var(--blue);
+    }
+
+    .password-output input {
+        min-width: 0;
+        width: 100%;
+        border: 0;
+        outline: 0;
+        padding: 8px 12px 12px;
+        background: transparent;
+        color: var(--text);
+        font-size: 24px;
+    }
+
+    .password-output button {
+        border: 0;
+        background: none;
+        padding: 0 12px;
+        color: var(--muted);
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+
+    .password-output button:hover {
+        color: var(--blue);
+    }
+
+    .password-output {
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid var(--line);
+        transition: border-color 0.2s ease;
+    }
+
+    .password-output:focus-within {
+        border-color: var(--blue);
+    }
+
+    .password-output input {
+        min-width: 0;
+        width: 100%;
+        border: 0;
+        outline: 0;
+        padding: 8px 12px 12px;
+        background: transparent;
+        color: var(--text);
+        font-size: 24px;
+    }
+
+    .password-output button {
+        flex-shrink: 0;
+        border: 0;
+        background: none;
+        padding: 0 12px;
+        color: var(--muted);
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+
+    .password-output button:hover {
+        color: var(--blue);
+    }
